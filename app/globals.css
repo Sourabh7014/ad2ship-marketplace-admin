@@ -1,0 +1,471 @@
+@import "tailwindcss";
+
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
+body[data-scroll-locked],
+html body[data-scroll-locked] {
+  overflow: auto !important;
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+}
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.14 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0 0);
+  --primary: #3d84c0;
+  --primary-foreground: oklch(1 0 0);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.56 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.58 0.24 28.48);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.71 0 0);
+  --chart-1: oklch(0.65 0.22 36.85);
+  --chart-2: oklch(0.6 0.11 184.15);
+  --chart-3: oklch(0.4 0.07 227.18);
+  --chart-4: oklch(0.83 0.17 81.03);
+  --chart-5: oklch(0.77 0.17 65.36);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.2 0 0);
+  --sidebar-primary: #3d84c0;
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.005 30);
+  --sidebar-accent-foreground: #3d84c0;
+  --sidebar-border: oklch(0.92 0 0);
+  --sidebar-ring: #3d84c0;
+
+  --font-sans:
+    "Geist", "Geist Fallback", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif:
+    "Geist", "Geist Fallback", ui-serif, Georgia, Cambria, "Times New Roman",
+    Times, serif;
+  --font-mono:
+    "Geist Mono", "Geist Mono Fallback", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --radius: 10px;
+
+  --shadow-2xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-sm:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-md:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-lg:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 4px 6px -1px oklch(0 0 0 / 0.1);
+  --shadow-xl:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 8px 10px -1px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
+}
+
+.dark {
+  --background: #000000;
+  --foreground: oklch(0.99 0 0);
+  --card: #09090b;
+  --card-foreground: oklch(0.99 0 0);
+  --popover: #09090b;
+  --popover-foreground: oklch(0.99 0 0);
+  --primary: #3d84c0;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.27 0 0);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.27 0 0);
+  --muted-foreground: oklch(0.71 0 0);
+  --accent: oklch(0.27 0 0);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.7 0.19 22.23);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.56 0 0);
+  --chart-1: oklch(0.49 0.24 264.4);
+  --chart-2: oklch(0.7 0.16 160.43);
+  --chart-3: oklch(0.77 0.17 65.36);
+  --chart-4: oklch(0.62 0.26 305.32);
+  --chart-5: oklch(0.64 0.25 16.51);
+  --sidebar: #09090b;
+  --sidebar-foreground: #f4f4f5;
+  --sidebar-primary: #3d84c0;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #18181b;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #3d84c0;
+
+  --shadow-2xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-sm:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-md:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-lg:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 4px 6px -1px oklch(0 0 0 / 0.1);
+  --shadow-xl:
+    0 1px 3px 0px oklch(0 0 0 / 0.1), 0 8px 10px -1px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand Blue Overrides from logo.png (#3d84c0) */
+  --color-indigo-50: #f0f7fc;
+  --color-indigo-100: #e0eff9;
+  --color-indigo-200: #bce0f2;
+  --color-indigo-300: #93ceeb;
+  --color-indigo-400: #62b7df;
+  --color-indigo-500: #3d84c0;
+  --color-indigo-600: #2a6ca5;
+  --color-indigo-650: #2a6ca5;
+  --color-indigo-655: #2a6ca5;
+  --color-indigo-700: #235787;
+  --color-indigo-800: #204b70;
+  --color-indigo-900: #1e3f5d;
+  --color-indigo-950: #112335;
+
+  --color-blue-50: #f0f7fc;
+  --color-blue-100: #e0eff9;
+  --color-blue-200: #bce0f2;
+  --color-blue-300: #93ceeb;
+  --color-blue-400: #62b7df;
+  --color-blue-500: #3d84c0;
+  --color-blue-600: #2a6ca5;
+  --color-blue-650: #2a6ca5;
+  --color-blue-655: #2a6ca5;
+  --color-blue-700: #235787;
+  --color-blue-800: #204b70;
+  --color-blue-900: #1e3f5d;
+  --color-blue-950: #112335;
+
+  /* Redirect Violet to Brand Blue to replace purple accents with brand colors */
+  --color-violet-50: #f0f7fc;
+  --color-violet-100: #e0eff9;
+  --color-violet-200: #bce0f2;
+  --color-violet-300: #93ceeb;
+  --color-violet-400: #62b7df;
+  --color-violet-500: #3d84c0;
+  --color-violet-600: #2a6ca5;
+  --color-violet-650: #2a6ca5;
+  --color-violet-655: #2a6ca5;
+  --color-violet-700: #235787;
+  --color-violet-800: #204b70;
+  --color-violet-900: #1e3f5d;
+  --color-violet-950: #112335;
+
+  /* Brand Orange/Amber Overrides from logo.png (#edaa41) */
+  --color-purple-50: #fefcf0;
+  --color-purple-100: #fdf7df;
+  --color-purple-200: #faf0bd;
+  --color-purple-300: #f5e08c;
+  --color-purple-400: #edc755;
+  --color-purple-500: #edaa41;
+  --color-purple-600: #d48e2c;
+  --color-purple-650: #bf7e23;
+  --color-purple-700: #a1641a;
+  --color-purple-800: #814f17;
+  --color-purple-900: #6c4115;
+  --color-purple-950: #3c2108;
+
+  /* ── Dashboard accent tokens ──
+     One coherent, brand-aligned system. `brand` = primary orange (#FF6B35),
+     `brandblue` = secondary blue (#3d84c0). Defined explicitly (not via the
+     indigo/violet remap) so the logistics dashboard owns its palette.
+     Generates bg-brand-500, text-brandblue-600, from-brand-500, etc. */
+  --color-brand-50: #fff3ee;
+  --color-brand-100: #ffe4d8;
+  --color-brand-200: #ffc6b0;
+  --color-brand-300: #ff9f7c;
+  --color-brand-400: #ff8355;
+  --color-brand-500: #ff6b35;
+  --color-brand-600: #f04e12;
+  --color-brand-700: #c73d0f;
+  --color-brand-800: #9d3314;
+  --color-brand-900: #7f2e15;
+  --color-brand-950: #451305;
+
+  --color-brandblue-50: #f0f7fc;
+  --color-brandblue-100: #e0eff9;
+  --color-brandblue-200: #bce0f2;
+  --color-brandblue-300: #93ceeb;
+  --color-brandblue-400: #62b7df;
+  --color-brandblue-500: #3d84c0;
+  --color-brandblue-600: #2a6ca5;
+  --color-brandblue-700: #235787;
+  --color-brandblue-800: #204b70;
+  --color-brandblue-900: #1e3f5d;
+  --color-brandblue-950: #112335;
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.slate-editor {
+  padding: 0 1rem !important;
+  min-height: 400px !important;
+}
+
+.slate-editor:focus-visible {
+  outline: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+@layer utilities {
+  .text-glow-blue {
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3), 0 0 20px rgba(255, 107, 53, 0.1);
+  }
+  .dark .text-glow-blue {
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.5), 0 0 20px rgba(255, 107, 53, 0.3);
+  }
+  .text-glow-red {
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3), 0 0 20px rgba(239, 68, 68, 0.1);
+  }
+  .dark .text-glow-red {
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5), 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+  .box-glow-blue {
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.1), 0 0 30px rgba(255, 107, 53, 0.05);
+  }
+  .dark .box-glow-blue {
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.2), 0 0 30px rgba(255, 107, 53, 0.1);
+  }
+  .box-glow-red {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.1), 0 0 30px rgba(239, 68, 68, 0.05);
+  }
+  .dark .box-glow-red {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2), 0 0 30px rgba(239, 68, 68, 0.1);
+  }
+  .bg-cyber-grid {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .dark .bg-cyber-grid {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  .animate-scanline {
+    position: relative;
+    overflow: hidden;
+  }
+  .animate-scanline::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 107, 53, 0.03) 50%,
+      transparent 100%
+    );
+    animation: scanline 4s linear infinite;
+    pointer-events: none;
+  }
+  .dark .animate-scanline::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 107, 53, 0.05) 50%,
+      transparent 100%
+    );
+  }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@utility scrollbar-none {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@utility scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.4);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.6);
+  }
+  scrollbar-width: thin;
+}
+
+/* Analytics/Summary/Reports redesign animations (ported from design spec) */
+@keyframes a2spulse { 0%, 100% { opacity: 1 } 50% { opacity: .3 } }
+@keyframes a2sfade { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+@keyframes a2sgrow { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+
+/* ── Motion: sidebar dropdowns + page transitions ── */
+@keyframes a2s-collapse-down { from { height: 0; opacity: 0 } to { height: var(--radix-collapsible-content-height); opacity: 1 } }
+@keyframes a2s-collapse-up { from { height: var(--radix-collapsible-content-height); opacity: 1 } to { height: 0; opacity: 0 } }
+[data-slot="collapsible-content"] { overflow: hidden; }
+[data-slot="collapsible-content"][data-state="open"] { animation: a2s-collapse-down 0.22s ease-out; }
+[data-slot="collapsible-content"][data-state="closed"] { animation: a2s-collapse-up 0.18s ease-in; }
+
+@keyframes a2s-page-enter { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+.page-enter { animation: a2s-page-enter 0.28s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="collapsible-content"][data-state="open"],
+  [data-slot="collapsible-content"][data-state="closed"],
+  .page-enter { animation: none; }
+}
+
+/* ── Motion: staggered card entrance on page load ── */
+@keyframes a2s-card-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+.page-enter section,
+.page-enter [data-slot="card"],
+.page-enter .grid > * { animation: a2s-card-in 0.38s ease-out both; animation-delay: 60ms; }
+.page-enter section:nth-of-type(2) { animation-delay: 140ms }
+.page-enter section:nth-of-type(3) { animation-delay: 220ms }
+.page-enter section:nth-of-type(4) { animation-delay: 300ms }
+.page-enter section:nth-of-type(n+5) { animation-delay: 380ms }
+.page-enter .grid > *:nth-child(2) { animation-delay: 110ms }
+.page-enter .grid > *:nth-child(3) { animation-delay: 160ms }
+.page-enter .grid > *:nth-child(4) { animation-delay: 210ms }
+.page-enter .grid > *:nth-child(5) { animation-delay: 260ms }
+.page-enter .grid > *:nth-child(n+6) { animation-delay: 310ms }
+/* don't double-animate grids that live inside an animated section */
+.page-enter section .grid > * { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter section,
+  .page-enter [data-slot="card"],
+  .page-enter .grid > * { animation: none; }
+}
+
+/* ── Motion: panel swap (D2C ↔ Logistics) ──
+   Separate route trees hard-swap the whole layout; fading the incoming panel
+   in over the stable app background turns that blink into a soft cross-fade. */
+@keyframes a2s-panel-swap-in { from { opacity: 0 } to { opacity: 1 } }
+.panel-swap-in { animation: a2s-panel-swap-in 0.26s ease-out both; }
+
+/* floating switcher island slides up into place on panel entry */
+@keyframes a2s-dock-in {
+  from { opacity: 0; transform: translate(-50%, 14px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+.dock-in { animation: a2s-dock-in 0.42s cubic-bezier(0.34, 1.45, 0.5, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-swap-in, .dock-in { animation: none; }
+}
+
+/* ── Motion: logistics dashboard ──
+   lg-dash = parcels moving along a route/pipeline (marching dashes).
+   lg-rise = section blocks lift in on load, staggered via inline delay. */
+@keyframes lg-dash { to { stroke-dashoffset: -160; } }
+@keyframes lg-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.lg-rise { animation: lg-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-rise { animation: none; }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
+}
