@@ -16,7 +16,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 function getUserCookieData() {
   if (typeof window === "undefined") return null;
   const path = window.location.pathname;
-  const isAdmin = path.startsWith("/admin");
+  const isAdmin = path.startsWith("/admin") || path.startsWith("/auth");
   const isSeller = path.startsWith("/seller") || path.startsWith("/store") || path.startsWith("/logistics");
 
   if (isAdmin) {
@@ -192,7 +192,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const updateUser = useCallback((userData: any) => {
     setUser((prev: any) => {
       if (!userData) {
-        const isAdmin = typeof window !== "undefined" && window.location.pathname.startsWith("/admin");
+        const isAdmin = typeof window !== "undefined" && (window.location.pathname.startsWith("/admin") || window.location.pathname.startsWith("/auth"));
         if (isAdmin) {
           cookieService.deleteCookie("admin_user");
           cookieService.deleteCookie("admin_token");
@@ -205,7 +205,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         return null;
       }
       const merged = { ...prev, ...userData };
-      const isAdmin = typeof window !== "undefined" && window.location.pathname.startsWith("/admin");
+      const isAdmin = typeof window !== "undefined" && (window.location.pathname.startsWith("/admin") || window.location.pathname.startsWith("/auth"));
       if (isAdmin || merged.role === "admin" || merged.role === "superadmin" || merged.role === "super_admin") {
         cookieService.setCookie("admin_user", JSON.stringify(merged));
       } else {

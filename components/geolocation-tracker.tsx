@@ -12,6 +12,7 @@ export function GeolocationTracker() {
     // We do NOT want to prompt for location on admin/seller dashboards or store settings pages.
     const isAdminOrSeller =
       pathname.startsWith("/admin") ||
+      pathname.startsWith("/auth") ||
       pathname.startsWith("/seller") ||
       (pathname.startsWith("/store") && !pathname.startsWith("/storefront"));
 

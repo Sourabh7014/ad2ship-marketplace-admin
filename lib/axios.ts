@@ -23,7 +23,7 @@ sellerApiClient.interceptors.request.use(
     
     let isAdmin = false;
     if (typeof window !== "undefined") {
-      if (window.location.pathname.startsWith("/admin")) {
+      if (window.location.pathname.startsWith("/admin") || window.location.pathname.startsWith("/auth")) {
         isAdmin = true;
       } else if (window.location.pathname.startsWith("/seller") || window.location.pathname.startsWith("/user")) {
         isAdmin = false;
@@ -92,7 +92,7 @@ sellerApiClient.interceptors.response.use(
             
             let isAdmin = false;
             if (typeof window !== "undefined") {
-              if (window.location.pathname.startsWith("/admin")) {
+              if (window.location.pathname.startsWith("/admin") || window.location.pathname.startsWith("/auth")) {
                 isAdmin = true;
               } else if (window.location.pathname.startsWith("/seller") || window.location.pathname.startsWith("/user")) {
                 isAdmin = false;
@@ -164,13 +164,13 @@ function handleUnauthorized(isAdmin: boolean, isStorefrontUser = false): void {
   }
 
   if (isAdmin) {
-    if (window.location.pathname.startsWith("/admin/auth")) return;
+    if (window.location.pathname.startsWith("/auth")) return;
     cookieService.deleteCookie("authToken");
     cookieService.deleteCookie("admin_token");
     cookieService.deleteCookie("refreshToken");
     cookieService.deleteCookie("admin_user");
     cookieService.deleteCookie("user");
-    window.location.href = "/admin/auth/login";
+    window.location.href = "/auth/login";
   } else {
     if (window.location.pathname.startsWith("/seller/auth")) return;
     cookieService.clearAllCookies();

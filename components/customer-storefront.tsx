@@ -420,7 +420,7 @@ export default function CustomerStorefront() {
                 <User className="w-3.5 h-3.5" /> Seller
               </Link>
               <Link
-                href="/admin/auth/login"
+                href="/auth/login"
                 className="text-xs font-bold px-4 py-2 rounded-xl text-white transition-all flex items-center gap-1.5"
                 style={{ background: `linear-gradient(135deg, ${BRAND.primary}, ${BRAND.primaryDark})`, boxShadow: `0 4px 12px ${BRAND.primaryGlow}` }}
               >
@@ -481,7 +481,7 @@ export default function CustomerStorefront() {
             </div>
             <div className="flex gap-2">
               <Link href="/seller/auth/login" className="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-zinc-800 text-zinc-300">Seller Login</Link>
-              <Link href="/admin/auth/login" className="flex-1 text-center text-xs font-bold py-2 rounded-lg text-white" style={{ background: BRAND.primary }}>Admin Login</Link>
+              <Link href="/auth/login" className="flex-1 text-center text-xs font-bold py-2 rounded-lg text-white" style={{ background: BRAND.primary }}>Admin Login</Link>
             </div>
           </div>
         )}
@@ -1074,7 +1074,7 @@ export default function CustomerStorefront() {
             <h5 className="text-xs uppercase font-black tracking-wider text-white mb-4">Quick Access</h5>
             <ul className="space-y-2.5 text-xs text-zinc-500">
               <li><Link href="/seller/auth/login" className="hover:text-white transition-colors flex items-center gap-2"><User className="w-3.5 h-3.5" />Seller Dashboard</Link></li>
-              <li><Link href="/admin/auth/login" className="hover:text-white transition-colors flex items-center gap-2"><Lock className="w-3.5 h-3.5" />Admin Panel</Link></li>
+              <li><Link href="/auth/login" className="hover:text-white transition-colors flex items-center gap-2"><Lock className="w-3.5 h-3.5" />Admin Panel</Link></li>
             </ul>
           </div>
 

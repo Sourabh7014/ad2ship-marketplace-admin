@@ -12,7 +12,7 @@ export function AdminRouteGuard({ children }: { children: React.ReactNode }) {
   const { user } = useUser();
 
   React.useEffect(() => {
-    if (!pathname || !pathname.startsWith("/admin") || pathname.startsWith("/admin/auth") || pathname === "/admin/dashboard") {
+    if (!pathname || !pathname.startsWith("/admin") || pathname === "/admin/dashboard") {
       return;
     }
 

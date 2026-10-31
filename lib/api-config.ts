@@ -118,7 +118,7 @@ export const API_HEADERS = {
 
 
 export const REDIRECT_URLS = {
-  ADMIN_LOGIN: "/admin/auth/login",
+  ADMIN_LOGIN: "/auth/login",
   ADMIN_DASHBOARD: "/admin/dashboard",
   SELLER_LOGIN: "/seller/auth/login",
   SELLER_DASHBOARD: "/seller/dashboard",

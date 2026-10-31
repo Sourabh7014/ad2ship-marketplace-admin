@@ -68,7 +68,7 @@ export function LoginForm() {
           cookieService.setCookie("pendingMobile", values.identifier);
           cookieService.deleteCookie("pendingEmail");
         }
-        router.push("/admin/auth/verify-otp");
+        router.push("/auth/verify-otp");
       }
     } catch (error: any) {
       const msg = error?.response?.data?.message || error?.message || "Admin with this mobile number was not found.";

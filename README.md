@@ -10,7 +10,7 @@ import karta hai.
 app/
   (panel)/
     layout.tsx, template.tsx
-    admin/              ← /admin, /admin/auth, /admin/auth/login, /admin/auth/verify-otp
+    auth/               ← /auth, /auth/login, /auth/verify-otp
     (dashboard)/
       layout.tsx        ← sidebar, header, route guards
       admin/            ← abhi sirf error.tsx hai, route folders hata diye gaye hain
@@ -32,18 +32,19 @@ i18n.ts          ← next-intl config (locale NEXT_LOCALE cookie se)
 
 ## Auth pages chalane ke liye
 
-`/admin/auth/*` pages `pnpm dev` par chalte hain, bas ye 15 packages chahiye jo
-`package.json` me abhi nahi hain:
+`/auth/*` pages `pnpm dev` par chalte hain. Inke 15 packages `package.json` me
+aa chuke hain:
 
 ```bash
-pnpm add @hookform/resolvers@^5.2.2 @radix-ui/react-alert-dialog@^1.1.15 \
-  @radix-ui/react-dialog@^1.1.15 @radix-ui/react-label@^2.1.7 @radix-ui/react-slot@^1.2.3 \
-  @radix-ui/react-tooltip@^1.2.8 axios@^1.16.1 class-variance-authority@^0.7.1 \
-  input-otp@^1.4.2 lucide-react@^0.548.0 next-themes@^0.4.6 nuqs@^2.4.3 \
-  react-hook-form@^7.65.0 sonner@^2.0.7 zod@^4.1.12
+pnpm install
 cp .env.example .env
 pnpm dev
 ```
+
+`/` seedha `/auth/login` par redirect hota hai. Admin login ka URL theme-frontend se
+alag hai: wahan `/admin/auth/login` hai, yahan `/auth/login`. Isliye `lib/axios.ts`,
+`context/UserContext.tsx` aur `components/geolocation-tracker.tsx` `/auth` ko bhi admin
+area maante hain. `/api/admin/auth/*` backend endpoints wahi hain.
 
 `/api/*` calls `next.config.ts` ke rewrites se `<backend>/admin/*` par jaate hain.
 `<backend>` `INTERNAL_API_URL` ya `NEXT_PUBLIC_API_BASE_URL` se aata hai. Dono khaali
@@ -66,5 +67,5 @@ karta hai jo yahan nahi hain:
   hai, isliye OTP verify hone ke baad 404 aata hai.
 - `app/admin/themes/` ke theme editor routes
 - `middleware.ts`. Server-side admin route guard isi me hai. Ye dashboard pages ke
-  saath aana chahiye. Abhi aaya to token wala admin har `/admin/auth/*` URL se
-  `/admin/dashboard` ke 404 par redirect hoga.
+  saath aana chahiye, aur isme `/admin/auth` ko `/auth` karna padega. Abhi aaya to
+  token wala admin har auth URL se `/admin/dashboard` ke 404 par redirect hoga.

@@ -59,7 +59,7 @@ export function OTPVerificationForm() {
     setMobile(finalMobile);
     if (!finalMobile) {
       toast.error("Email or Mobile number not found. Please start over.");
-      router.push("/admin/auth/login");
+      router.push("/auth/login");
     }
   }, [searchParams, router]);
 
@@ -83,7 +83,7 @@ export function OTPVerificationForm() {
   const [isBlocked, setIsBlocked] = useState(false);
 
   const onSubmit = async (values: OTPFormData) => {
-    if (!mobile) { toast.error("Identifier not found."); router.push("/admin/auth/login"); return; }
+    if (!mobile) { toast.error("Identifier not found."); router.push("/auth/login"); return; }
     setLoading(true);
     try {
       const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mobile);
@@ -243,7 +243,7 @@ export function OTPVerificationForm() {
                 <p className="text-zinc-500 text-[12px] font-medium">Enter the 6-digit code sent to</p>
                 <div className="inline-flex items-center gap-2 mt-2 bg-zinc-50 border border-zinc-200 px-4 py-1.5 rounded-full">
                   <span className="text-zinc-700 text-[12px] font-bold">{mobile}</span>
-                  <button onClick={() => router.push("/admin/auth/login")} type="button" className="text-blue-500 hover:text-blue-600">
+                  <button onClick={() => router.push("/auth/login")} type="button" className="text-blue-500 hover:text-blue-600">
                     <Pencil className="w-3 h-3" />
                   </button>
                 </div>

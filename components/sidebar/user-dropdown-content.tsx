@@ -63,7 +63,7 @@ export function UserDropdownContent({
           } catch (e) {}
         }
         updateUser(null);
-        router.push(pathname.startsWith("/seller") ? "/seller/auth/login" : "/admin/auth/login");
+        router.push(pathname.startsWith("/seller") ? "/seller/auth/login" : "/auth/login");
       },
     });
   };
